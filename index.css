@@ -1,2 +1,23 @@
 /* import header and footer styling */
 @import "heading.css";
+
+body {
+    font-family:'Times New Roman', Times, serif;
+}
+
+img {
+    width: 48%;
+    height: 450px
+}
+
+video {
+    margin-left: 33%;
+}
+
+table {
+    margin-left: 20%;
+}
+
+th {
+    font-size: 18px;
+}
