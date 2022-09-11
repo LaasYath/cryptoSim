@@ -1,2 +1,21 @@
 /* import header and footer styling */
 @import "heading.css";
+
+#title {
+    margin-left: 5px;
+}
+
+.message {
+    width: 47%;
+    height: 300px;
+}
+
+#sim {
+    display: flex;
+    margin: 5px;
+}
+
+#arrow {
+    font-size: 75px;
+    margin-top: 85px;
+}
