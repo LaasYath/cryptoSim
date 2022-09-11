@@ -27,7 +27,7 @@
 
     <div id="sim">
         <div id="settings">
-            <form>
+            <form action="customAlgorithm.php" method="POST">
                 <h2> SETTINGS: </h2>
                 <label for="enDecode"> Encode/Decode </label>
                 <select name="enDecode" id="enDecode">
@@ -103,5 +103,11 @@
         <h1 id="arrow"> &#8594 </h1>
         <textarea class="message" name="output" placeholder="Output..."></textarea>
     </div>
+
+    <?php 
+        if (isset($_POST["submit"])) {
+            echo "it worked";
+        }
+    ?>
 </body>
 </html>
