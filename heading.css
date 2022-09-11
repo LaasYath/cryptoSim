@@ -1,0 +1,18 @@
+.menuBar {
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+}
+
+.menuBar button {
+    width: 25%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #cfe2f3ff;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+}
+
+.current {
+    background-color: #88daebff;
+}
