@@ -25,20 +25,30 @@
         </p>
     </div>
 
+    <?php
+        $message = $_POST["input"];
+        $messageChars = str_split($message);
+        $enDecode = $_POST["enDecode"];
+        $multiply = $_POST["multiply"];
+        $divide = $_POST["divide"];
+        $add = $_POST["add"];
+        $subtract = $_POST["sub"];
+    ?>
+
     <div id="sim">
+        <!-- options for  -->
         <div id="settings">
+        <h2> SETTINGS: </h2>
             <form action="customAlgorithm.php" method="POST">
-                <h2> SETTINGS: </h2>
                 <label for="enDecode"> Encode/Decode </label>
                 <select name="enDecode" id="enDecode">
                     <option value=""></option>
                     <option value="encode">Encode</option>
                     <option value="decode">Decode</option>
                 </select>
-                <br>
 
                 <label for="multiply"> Multiply </label>
-                <select name="mulitply" id="multiply">
+                <select name="multiply" id="multiply">
                     <option value=""></option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -50,7 +60,6 @@
                     <option value="8">8</option>
                     <option value="9">9</option>
                 </select>
-                <br>
 
                 <label for="divide"> Divide </label>
                 <select name="divide" id="divide">
@@ -65,7 +74,6 @@
                     <option value="8">8</option>
                     <option value="9">9</option>
                 </select>
-                <br>
 
                 <label for="add"> Add </label>
                 <select name="add" id="add">
@@ -80,7 +88,6 @@
                     <option value="20">20</option>
                     <option value="25">25</option>
                 </select>
-                <br>
 
                 <label for="sub"> Subtract </label>
                 <select name="sub" id="sub">
@@ -95,19 +102,49 @@
                     <option value="20">20</option>
                     <option value="25">25</option>
                 </select>
+                <br>
 
-                <input type="submit" value="Submit">
-            </form>
+                <input type="submit" name="submit" id="submit" value="Convert">
+                <hr>
         </div>
-        <textarea class="message" name="input" placeholder="Input..."></textarea>
-        <h1 id="arrow"> &#8594 </h1>
-        <textarea class="message" name="output" placeholder="Output..."></textarea>
+
+        <div id="messages">
+                <textarea class="message" id="input" name="input" placeholder="Input..."></textarea>
+
+            </form>
+            <h1 id="arrow"> &#8594 </h1>
+            <textarea  class="message" id="output" name="output" placeholder="Output..."></textarea>
+        </div>
     </div>
 
     <?php 
         if (isset($_POST["submit"])) {
-            echo "it worked";
+            $newMessage = "";
+            foreach ($messageChars as $char) {
+                $ascii = ord($char);
+                if ($enDecode = "encode") {
+                    $ascii = ($multiply != "") ? ($ascii * $multiply) : $ascii;
+                    $ascii = ($divide != "") ? ($ascii * $divide) : $ascii;
+                    $ascii = ($add != "") ? ($ascii * $add) : $ascii;
+                    $ascii = ($subtract != "") ? ($ascii * $subtract) : $ascii;
+                    $ascii = ($ascii % 127) + 33;
+                    $newMessage = $newMessage . chr($ascii);
+                } else if ($enDecode = "decode") {
+                    // add code to decode 
+                }
+            }
+            // prints back intial message encrypted data
+            echo '<script type="text/JavaScript"> 
+                var x = document.getElementById("output");
+                x.value = "' . $newMessage . '";
+
+                var y = document.getElementById("input");
+                y.value = "' . $message . '";
+                </script>'
+            ;
         }
+
     ?>
+
 </body>
 </html>
