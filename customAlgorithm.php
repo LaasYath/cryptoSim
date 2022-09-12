@@ -9,10 +9,9 @@
 </head>
 <body>
     <div class="menuBar">
-        <button type="button" onclick="window.open('index.html', '_self')"> Crypto Sim </button>
-        <button type="button" onclick="window.open('ciphers.html', '_self')"> Ciphers </button>
-        <button type="button" onclick="window.open('aesDes.html', '_self')"> AES/DES </button>
-        <button type="button" id="current" onclick="window.open('customAlgorithm.html', '_self')"> Build Your Own Algorithm </button>
+        <button type="button" onclick="window.open('http:\/\/127.0.0.1:5500/index.html')"> Crypto Sim </button>
+        <button type="button" onclick="window.open('http:\/\/localhost:81/cryptoSim/ciphers.php', '_self')"> Ciphers </button>
+        <button type="button" id="current" onclick="window.open('http:\/\/localhost:81/cryptoSim/customAlgorithm.php', '_self')"> Build Your Own Algorithm </button>
     </div>
 
     <div id="title">
@@ -33,10 +32,22 @@
         $divide = $_POST["divide"];
         $add = $_POST["add"];
         $subtract = $_POST["sub"];
+
+        $security = 0;
+        if ($multiply != "") {
+            $security += 1;
+        } if ($divide != "") {
+            $security += 1;
+        } if ($add != "") {
+            $security += 1;
+        } if ($subtract != "") {
+            $security += 1;
+        }
     ?>
 
     <div id="sim">
-        <!-- options for  -->
+        <!-- options for encryption -->
+        <div id="top">
         <div id="settings">
         <h2> SETTINGS: </h2>
             <form action="customAlgorithm.php" method="POST">
@@ -105,8 +116,16 @@
                 <br>
 
                 <input type="submit" name="submit" id="submit" value="Convert">
-                <hr>
         </div>
+        <h2 id="topTitle"> SECURITY </h2>
+        <div class="percent">
+            <div id="fourth"> </div>
+            <div id="half"> </div>
+            <div id="threeFourth"> </div>
+            <div id="full"> </div>
+        </div>
+        </div>
+        <hr>
 
         <div id="messages">
                 <textarea class="message" id="input" name="input" placeholder="Input..."></textarea>
@@ -127,7 +146,10 @@
                     $ascii = ($divide != "") ? ($ascii * $divide) : $ascii;
                     $ascii = ($add != "") ? ($ascii * $add) : $ascii;
                     $ascii = ($subtract != "") ? ($ascii * $subtract) : $ascii;
-                    $ascii = ($ascii % 127) + 33;
+                    $ascii = ($ascii % 127);
+                    if ($ascii < 32) {
+                        $ascii += 33;
+                    }
                     $newMessage = $newMessage . chr($ascii);
                 } else if ($enDecode = "decode") {
                     // add code to decode 
@@ -135,15 +157,38 @@
             }
             // prints back intial message encrypted data
             echo '<script type="text/JavaScript"> 
-                var x = document.getElementById("output");
-                x.value = "' . $newMessage . '";
+                var output = document.getElementById("output");
+                output.value = "' . $newMessage . '";
 
-                var y = document.getElementById("input");
-                y.value = "' . $message . '";
+                var input = document.getElementById("input");
+                input.value = "' . $message . '";
+
+                var enDecodeDD = document.getElementById("enDecode");
+                enDecodeDD.value = "' . $enDecode . '";
+
+                var multiplyDD = document.getElementById("multiply");
+                multiplyDD.value = "' . $multiply . '";
+
+                var divideDD = document.getElementById("divide");
+                divideDD.value = "' . $divide . '";
+
+                var addDD = document.getElementById("add");
+                addDD.value = "' . $add . '";
+
+                var subDD = document.getElementById("sub");
+                subDD.value = "' . $subtract . '";
                 </script>'
             ;
         }
 
+        if ($security == 4) {
+            echo '<script type="text/JavaScript"> 
+                var percent = document.getElementsByClassName("percent");
+                for (let i = 0; i < percent.length; i++) {
+                    percent[i].style.backgroundColor = "green";
+                 }
+            </script>';
+        }
     ?>
 
 </body>

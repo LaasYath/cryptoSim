@@ -1,8 +1,36 @@
 /* import header and footer styling */
 @import "heading.css";
 
-#title {
-    margin-left: 5px;
+#title h1 {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+#title p {
+    text-align: justify;
+    margin: 0px;
+}
+
+h2 {
+    margin: 0px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+#settings {
+    text-align: center;
+    margin-bottom: 10px;
+    width: 50%;
+}
+
+#submit {
+    margin: 0px;
+    margin-top: 10px;
+}
+
+#messages {
+    display: flex;
 }
 
 .message {
@@ -10,12 +38,30 @@
     height: 300px;
 }
 
-#sim {
-    display: flex;
-    margin: 5px;
+#arrow {
+    font-size: px;
+    margin-top: 90px;
 }
 
-#arrow {
-    font-size: 75px;
-    margin-top: 85px;
+.percent div {
+    width: 12%;
+    height: 30px;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.percent {
+    display: flex;
+    width: 99%;
+    position: absolute;
+    left: 50%;
+    top: 40%;
+
+}
+
+#topTitle {
+    position: absolute;
+    left: 70%;
+    top: 32%;
 }

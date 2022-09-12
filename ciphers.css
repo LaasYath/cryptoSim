@@ -1,3 +1,33 @@
 /* import header and footer styling */
 @import "heading.css";
 
+#cipherOptions {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+#settings {
+    text-align: center;
+    margin-bottom: 10px;
+    width: 50%;
+}
+
+#submit {
+    margin: 0px;
+    margin-top: 10px;
+}
+
+#messages {
+    display: flex;
+}
+
+.message {
+    width: 47%;
+    height: 300px;
+}
+
+#arrow {
+    font-size: 75px;
+    margin-top: 90px;
+}
+
